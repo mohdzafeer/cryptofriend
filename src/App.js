@@ -1,23 +1,47 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Header from "./Components/Headrer";
+import Home from "./Pages/Home";
+import CoinPage from "./Pages/CoinPage";
+import Footer from "./Components/Footer";
+
+
+
 
 function App() {
+
+  // const useStyles = makeStyles(()=>({
+  //   App:{
+  //     backgroundColor:'#14161a',
+  //     color:'#F8F9FA',
+  //     minHeight:'100vh',
+  //     display:'flex',
+  //     justifyContent:'center',
+  //     alignItems:'center',
+  //   }
+  // }))
+
+  // const classes=useStyles()
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-gray-900 min-h-screen text-yellow-600 font-semibold ">
+      {/* // <div className={classes.App}> */}
+      <BrowserRouter>
+        <div className="flex h-full  flex-col ">
+          <div>
+            <div>
+              <Header />
+            </div>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/coins/:id" element={<CoinPage />} />
+            </Routes>
+          </div>
+          <div>
+            <Footer />
+          </div>
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

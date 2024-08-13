@@ -1,0 +1,78 @@
+import axios from "axios"
+import { TrendingCoins } from "../../config/api"
+import { CryptoState } from "../../CryptoContext"
+import { useEffect, useState } from "react"
+import AliceCarousel from "react-alice-carousel"
+import { Link } from "react-router-dom"
+
+
+
+
+const Carousel = () => {
+
+    const {currency}=CryptoState()
+
+    const [trending,setTrending]=useState([])
+
+    const fetchTrendingCoins=async()=>{
+        const {data}=await axios.get(TrendingCoins(currency))
+        setTrending(data)
+    }
+
+    console.log(trending)
+
+    useEffect(()=>{
+        fetchTrendingCoins()
+    },[currency])
+
+    
+
+    const items=trending.map((coin)=>{
+        return(
+            <Link 
+            to={`/coins/${coin.id}`}
+            className="flex flex-col items-center mt-10"
+            >
+                <img
+                src={coin.image}
+                alt={coin.name}
+                height="80"
+                style={{marginBottom:10}}
+                className="h-16"
+                />
+                <h1 className="flex items-center gap-2">
+                    <span className="text-xl uppercase font-extrabold font-serif">{coin.symbol}</span>
+                    <span>{coin.price_change_percentage_24h>0 ? <p className="text-green-400 font-bold">+{coin.price_change_percentage_24h}%</p> : <p className="text-red-500 font-bold">{coin.price_change_percentage_24h}%</p>}</span>
+                </h1>
+                <h1 className="text-xl font-bold font-sans ">{coin.name}</h1>
+                <h1 className="text-lg font-mono font-semibold text-yellow-400 flex gap-1"><span>{currency==='INR'?<p>₹</p>:<p>$</p>}</span>{coin.current_price}</h1>
+            </Link>
+        )
+    })
+
+    const responsive={
+        0:{
+            items:2,
+        },
+        512:{
+            items:4,
+        },
+    }
+
+    return (
+        <div className="overflow-hidden max-w-screen-xl ">
+            <AliceCarousel
+            mouseTracking
+            infinite
+            autoPlayInterval={1000}
+            animationDuration={1500}
+            disableDotsControls
+            disableButtonsControls
+            responsive={responsive}
+            autoPlay
+            items={items}
+            />
+        </div>
+    )
+}
+export default Carousel
