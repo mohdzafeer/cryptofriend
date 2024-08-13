@@ -1,4 +1,4 @@
-import react from 'react'
+
 import { useNavigate } from 'react-router-dom'
 import { CryptoState } from '../CryptoContext'
 const Header = () => {
@@ -12,6 +12,12 @@ const Header = () => {
     return (
         <div className='h-20 flex justify-between items-center lg:px-10 px-4 bg-gray-800 shadow-xl  '>
             <h1 onClick={()=>navigate('/')} className='font-bold lg:text-3xl md:text-xl text-xl text-yellow-500 uppercase select-none shadow-lg font-sans cursor-pointer'>Crypto Friend</h1>
+            {/* <img
+            src='./crypto_friend.png'
+            alt='Crypto Friend'
+            className='h-14 cursor-pointer'
+            onClick={navigate('/')}
+            /> */}
             <div className='flex items-center gap-4'>
             <form class="">
                 
