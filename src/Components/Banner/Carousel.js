@@ -47,8 +47,8 @@ const Carousel = () => {
                     <span className="text-xl uppercase font-extrabold font-serif">{coin.symbol}</span>
                     <span>{coin.price_change_percentage_24h>0 ? <p className="text-green-400 font-bold text-lg">+{coin.price_change_percentage_24h}%</p> : <p className="text-red-500 font-bold text-lg">{coin.price_change_percentage_24h}%</p>}</span>
                 </h1>
-                <h1 className="text-xl font-bold font-sans ">{coin.name}</h1>
-                <h1 className="text-lg font-mono font-semibold text-yellow-400 flex gap-1"><span>{currency==='INR'?<p>₹</p>:<p>$</p>}</span>{numberWithCommas(coin.current_price)}</h1>
+                <h1 className="text-xl font-bold font-sans text-white ">{coin.name}</h1>
+                <h1 className=" font-mono font-semibold text-yellow-400 flex gap-1 text-xl"><span>{currency==='INR'?<p>₹</p>:<p>$</p>}</span>{numberWithCommas(coin.current_price)}</h1>
             </Link>
         )
     })

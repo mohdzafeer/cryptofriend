@@ -10,7 +10,7 @@ const Header = () => {
     console.log(currency);
 
     return (
-        <div className='h-20 flex justify-between items-center lg:px-10 px-4 bg-gray-800 shadow-xl  '>
+        <div className='h-20 flex justify-between items-center lg:px-10 px-4 bg-zinc-800 shadow-xl  '>
             <h1 onClick={()=>navigate('/')} className='font-bold lg:text-3xl md:text-xl text-xl text-yellow-500 uppercase select-none shadow-lg font-sans cursor-pointer'>Crypto Friend</h1>
             {/* <img
             src='./crypto_friend.png'
