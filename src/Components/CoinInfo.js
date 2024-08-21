@@ -30,7 +30,8 @@ ChartJS.register(
     Tooltip,
     Legend
 );
-// 
+
+ 
 
 const CoinInfo = ({ coin }) => {
 
