@@ -5,7 +5,7 @@ import axios from 'axios'
 import '../App.css';
 import { Line } from 'react-chartjs-2'
 
-// 
+
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -36,27 +36,38 @@ ChartJS.register(
 const CoinInfo = ({ coin }) => {
 
     const [historicData, setHistoricData] = useState()
-    const [days, setDays] = useState(1)
+    const [days, setDays] = useState(365)
     const { currency } = CryptoState()
-    const [loading, setLoading] = useState(false)
+    const [loading, setLoading] = useState(true)
 
-    let cur = currency.toLowerCase()
+    let cur = currency.toLowerCase();
 
 
 
     const fetchHistoricalData = async () => {
-        setLoading(true)
-        const { data } = await axios.get(HistoricalChart(coin?.id, days, cur))
-        setHistoricData(data?.prices)
+        // setLoading(true)
+        try{
+            const { data } = await axios.get(HistoricalChart(coin?.id, cur, days))
+        setHistoricData(data.prices)
         setLoading(false)
+        }
+        catch(error){
+            console.error('Error fetching historical data:', error)
+            // setLoading(false)
+            setTimeout(() => {
+                setLoading(false)
+                // fetchHistoricalData()
+            }, 20000);
+        }
     }
 
     useEffect(() => {
         fetchHistoricalData()
-    }, [currency, days,cur])
+        console.log(days)
+    }, [currency, days])
 
-    console.log(historicData)
-    // console.log(cur)
+    // console.log(historicData)
+    console.log(cur)
 
     return (
         <div className='p-5 w-2/3 flex flex-col justify-center'>
@@ -84,8 +95,8 @@ const CoinInfo = ({ coin }) => {
                                     datasets: [
                                         {
                                             data: historicData?.map((coin) => coin[1]),
-                                            label: `Price (Past ${days} Days) in ${currency}`,
-                                            borderColor: '#EEBC1D',
+                                            label: `Price (Past ${days} Day(s)) in ${currency}`,
+                                            borderColor: '#2DD4BF',
                                         },
                                     ],
                                 }}
@@ -108,7 +119,7 @@ const CoinInfo = ({ coin }) => {
                             <button className='text-xl bg-zinc-950 text-white px-6 py-3 font-bold hover:bg-zinc-800 rounded-lg shadow-xl duration-200'>3 Months</button>
                             <button className='text-xl bg-zinc-950 text-white px-6 py-3 font-bold hover:bg-zinc-800 rounded-lg shadow-xl duration-200'>1 Year</button> */}
 
-                            {chartDays.map((day) => (
+                            {/* {chartDays.map((day) => (
                                 <SelectButton 
                                 key={day.value}
                                 onClick={()=>{
@@ -118,7 +129,20 @@ const CoinInfo = ({ coin }) => {
                                 >
                                     {day.label}
                                 </SelectButton>
-                            ))}
+                            ))} */}
+
+                            <button 
+                            onClick={()=>setDays(1)}
+                            className='text-teal-400 px-3 py-2 font-bold text-xl rounded-lg bg-gray-800 hover:bg-teal-400 hover:text-black duration-200 active:bg-teal-700 active:text-black focus:bg-teal-500 focus:text-black'>24 Hours</button>
+                            <button 
+                            onClick={()=>setDays(30)}
+                            className='text-teal-400 px-3 py-2 font-bold text-xl rounded-lg bg-gray-800 hover:bg-teal-400 hover:text-black duration-200 active:bg-teal-500 active:text-black focus:bg-teal-500 focus:text-black'>30 Days</button>
+                            <button 
+                            onClick={()=>setDays(90)}
+                            className='text-teal-400 px-3 py-2 font-bold text-xl rounded-lg bg-gray-800 hover:bg-teal-400 hover:text-black duration-200 active:bg-teal-700 active:text-black focus:bg-teal-500 focus:text-black'>3 Months</button>
+                            <button 
+                            onClick={()=>setDays(365)}
+                            className='text-teal-400 px-3 py-2 font-bold text-xl rounded-lg bg-gray-800 hover:bg-teal-400 hover:text-black duration-200 active:bg-teal-700 active:text-black focus:bg-teal-500 focus:text-black'>1 Year</button>
                         </div>
                     </>
             }
