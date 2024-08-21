@@ -16,8 +16,8 @@ import {
     Tooltip,
     Legend,
 } from 'chart.js';
-import { chartDays } from '../config/data';
-import SelectButton from './SelectButton';
+// import { chartDays } from '../config/data';
+// import SelectButton from './SelectButton';
 //   import { Line } from 'react-chartjs-2';
 //   import faker from 'faker';
 
