@@ -24,7 +24,7 @@ function App() {
 
 
   return (
-    <div className="bg-zinc-900 min-h-screen text-yellow-600 font-semibold ">
+    <div className="bg-black min-h-screen text-yellow-600 font-semibold ">
       {/* // <div className={classes.App}> */}
       <BrowserRouter>
         <div className="flex h-full  flex-col ">

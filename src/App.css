@@ -18,9 +18,9 @@ a{
 .loader {
     width: 40px;
     aspect-ratio: 1;
-    --c: linear-gradient(#EAB308 0 0);
-    --r1: radial-gradient(farthest-side at bottom,#EAB308 93%,#EAB308);
-    --r2: radial-gradient(farthest-side at top   ,#EAB308 93%,#EAB308);
+    --c: linear-gradient(#2DD4BF 0 0);
+    --r1: radial-gradient(farthest-side at bottom,#2DD4BF 93%,#2DD4BF);
+    --r2: radial-gradient(farthest-side at top   ,#2DD4BF 93%,#2DD4BF);
     background: 
       var(--c) ,var(--r1),var(--r2),
       var(--c) ,var(--r1),var(--r2),
@@ -54,7 +54,7 @@ a{
     aspect-ratio: 1;
     border-radius: 50%;
     border: 8px solid #0000;
-    border-right-color: #ffa50097;
+    border-right-color: #2DD4BF;
     position: relative;
     animation: l24 1s infinite linear;
   }
@@ -74,3 +74,67 @@ a{
   @keyframes l24 {
     100% {transform: rotate(1turn)}
   }
+
+
+  /* HTML: <div class="loader"></div> */
+.loader3d {
+  --s: 25px;
+  --g :5px;  
+  
+  width: calc(3*(1.353*var(--s) + var(--g)));
+  display: grid;
+  justify-items: end;
+  aspect-ratio: 3;
+  overflow: hidden;
+  --_m: linear-gradient(90deg,#0000,#000 15px calc(100% - 15px),#0000);
+  -webkit-mask: var(--_m);
+          mask: var(--_m);
+}
+.loader3d:before { 
+  content: "";
+  width: calc(4*100%/3);
+  background:
+  conic-gradient(from -90deg at var(--s) calc(0.353*var(--s)),
+      #fff 135deg,#666 0 270deg,#aaa 0); 
+  --_m:
+    linear-gradient(to bottom right,
+       #0000 calc(0.25*var(--s)),#000 0 calc(100% - calc(0.25*var(--s)) - 1.414*var(--g)),#0000 0),
+    conic-gradient(from -90deg at right var(--g) bottom var(--g),#000 90deg,#0000 0);
+   -webkit-mask: var(--_m);
+           mask: var(--_m);
+  background-size:   calc(100%/4) 100%;
+  -webkit-mask-size: calc(100%/4) 100%;
+          mask-size: calc(100%/4) 100%;
+  -webkit-mask-composite: source-in;
+          mask-composite: intersect;
+  animation: l8 1s infinite linear;
+}
+@keyframes l8 {
+  to {transform:translate(calc(100%/4))}
+}
+
+/* HTML: <div class="loader"></div> */
+.loaderBar {
+  width: 40px;
+  aspect-ratio: 1;
+  background:
+    linear-gradient(to bottom right,#0000 calc(50% - 40px),#fff 50%,#0000 calc(50% + 40px)) 
+    bottom right/calc(200% + 80px) calc(200% + 80px) 
+    orange;
+  animation: l8 1s infinite ;
+}
+@keyframes l8 {
+    100% {background-position: top left}
+}
+
+/* HTML: <div class="loader"></div> */
+.dots {
+  height: 15px;
+  aspect-ratio: 5;
+  -webkit-mask: linear-gradient(90deg,#2DD4BF ,#2DD4BF 20% 80%,#2DD4BF);
+  background: radial-gradient(closest-side at 37.5% 50%,#2DD4BF 94%,#0000) 0/calc(80%/3) 100%;
+  animation: l48 .75s infinite linear;
+}
+@keyframes l48 {
+  100% {background-position: 36.36%}
+}

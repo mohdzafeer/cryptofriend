@@ -7,11 +7,11 @@ const Header = () => {
 
     const {currency,setCurrency} = CryptoState()
 
-    console.log(currency);
+    // console.log(currency);
 
     return (
-        <div className='h-20 flex justify-between items-center lg:px-10 px-4 bg-zinc-800 shadow-xl  '>
-            <h1 onClick={()=>navigate('/')} className='font-bold lg:text-3xl md:text-xl text-xl text-yellow-500 uppercase select-none shadow-lg font-sans cursor-pointer'>Crypto Friend</h1>
+        <div className='h-20 flex justify-between items-center lg:px-10 px-4 bg-gray-900 shadow-xl  '>
+            <h1 onClick={()=>navigate('/')} className='font-bold lg:text-3xl md:text-xl text-xl text-teal-400 uppercase select-none shadow-lg font-sans cursor-pointer hover:scale-105 duration-200 tracking-wide'>Crypto Friend</h1>
             {/* <img
             src='./crypto_friend.png'
             alt='Crypto Friend'
@@ -31,7 +31,7 @@ const Header = () => {
                     
                 </select>
             </form>
-            <button className='bg-yellow-500 font-bold lg:text-2xl text-lg px-3 py-2 rounded-lg text-gray-900 hover:bg-yellow-400 active:bg-yellow-500 duration-200'>Log In</button>
+            {/* <button className='bg-teal-400 font-bold lg:text-2xl text-lg px-3 py-2 rounded-lg text-gray-900 hover:bg-teal-500 active:bg-teal-400 duration-200'>Log In</button> */}
             </div>
         </div>
     )
